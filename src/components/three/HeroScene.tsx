@@ -11,7 +11,7 @@ type Quality = 'high' | 'low'
 
 /** The composition is authored ~5.6 × 4.0 world units wide. */
 const CONTENT = {
-  high: { width: 5.6, height: 4.0 },
+  high: { width: 5.1, height: 4.0 },
   low: { width: 3.4, height: 4.0 },
 }
 
