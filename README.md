@@ -83,6 +83,22 @@ tooltip instead of pretending the link is real. Also update the canonical URLs a
   previews are labelled as stylised interface studies rather than screenshots, and
   projects without public links say “not public yet”.
 
+## Smoke test (no browser needed)
+
+`scripts/smoke.mjs` loads the app in jsdom and reports render output, the section list,
+route navigation and any console errors. jsdom cannot execute ES modules, so it needs a
+single-file bundle first:
+
+```bash
+npx esbuild src/main.tsx --bundle --format=iife --jsx=automatic --alias:@=./src \
+  --define:process.env.NODE_ENV='"production"' --loader:.css=empty \
+  --outfile=/tmp/serve-smoke/smoke-bundle.js
+printf '<!doctype html><body><div id="root"></div><script src="/smoke-bundle.js"></script>' \
+  > /tmp/serve-smoke/index.html
+(cd /tmp/serve-smoke && python3 -m http.server 8098 &)
+npm run smoke -- http://127.0.0.1:8098/
+```
+
 ## Deployment
 
 SPA rewrites are already configured for Vercel (`vercel.json`), Netlify and Cloudflare

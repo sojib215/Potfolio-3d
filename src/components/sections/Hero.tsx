@@ -43,7 +43,7 @@ export default function Hero() {
 
   const introActive = useIntro()
   /** Entrance animations wait for the intro curtain on a first visit. */
-  const introOffset = introActive ? 1.6 : 0
+  const introOffset = introActive ? 1.35 : 0
 
   const [webgl] = useState(() => detectWebGL())
   const [mounted, setMounted] = useState(false)
@@ -112,7 +112,7 @@ export default function Hero() {
       </motion.div>
 
       {/* legibility scrim */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-void via-void/90 to-transparent lg:via-void/55" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-void via-void/90 to-transparent lg:via-void/70" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-void to-transparent" />
 
       <Marker className="left-6 top-28 hidden lg:block" />
@@ -123,7 +123,7 @@ export default function Hero() {
         style={{ y: contentY, opacity: contentOpacity }}
         className="shell relative flex min-h-[100svh] flex-col pb-16 pt-32 lg:pb-20 lg:pt-40"
       >
-        <div className="flex flex-1 flex-col justify-center">
+        <div className="flex flex-1 flex-col justify-center lg:max-w-[58%]">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

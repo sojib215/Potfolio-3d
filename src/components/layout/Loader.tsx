@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { profile } from '@/data/profile'
 
-const DURATION = 1500
+const DURATION = 1200
 
 /** Short cinematic intro. Runs once per session. */
 export default function Loader({ onComplete }: { onComplete: () => void }) {
@@ -33,7 +33,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       className="fixed inset-0 z-[100] flex flex-col justify-between bg-void px-6 py-7 md:px-10"
       initial={{ y: 0 }}
       animate={done ? { y: '-101%' } : { y: 0 }}
-      transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+      transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
       onAnimationComplete={() => {
         if (done) onComplete()
       }}

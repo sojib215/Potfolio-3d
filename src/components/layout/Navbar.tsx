@@ -86,6 +86,7 @@ export default function Navbar() {
                       to={item.href}
                       onClick={handleNav(item.href)}
                       data-cursor="link"
+                      aria-current={isActive(item.href) ? 'true' : undefined}
                       className={cn(
                         'group relative flex items-center gap-2 text-[13px] tracking-[-0.01em] transition-colors duration-500',
                         isActive(item.href) ? 'text-chalk' : 'text-dim hover:text-chalk',

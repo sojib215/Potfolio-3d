@@ -1,4 +1,5 @@
 import { Suspense, useEffect, useState } from 'react'
+
 import { Canvas, useThree } from '@react-three/fiber'
 import { ContactShadows, Environment, Lightformer } from '@react-three/drei'
 import { Floor, Rig, Workspace } from './Workspace'
@@ -33,9 +34,19 @@ function Framing({ quality, children }: { quality: Quality; children: React.Reac
   return <group scale={scale}>{children}</group>
 }
 
+/** Aims the camera like a still-life photograph: a slight downward tilt. */
+function CameraAim() {
+  const camera = useThree((state) => state.camera)
+  useEffect(() => {
+    camera.lookAt(0, -0.02, 0)
+  }, [camera])
+  return null
+}
+
 function SceneContents({ quality }: { quality: Quality }) {
   return (
     <>
+      <CameraAim />
       <fog attach="fog" args={['#08080a', 6.5, 17]} />
 
       <ambientLight intensity={0.32} />
@@ -111,7 +122,7 @@ export default function HeroScene({ quality = 'high', active = true, className }
     <div className={className} aria-hidden="true">
       <Canvas
         dpr={quality === 'high' ? [1, 1.8] : [1, 1.3]}
-        camera={{ position: [0, 0.5, 5.9], fov: 33, near: 0.1, far: 60 }}
+        camera={{ position: [0, 0.72, 5.9], fov: 33, near: 0.1, far: 60 }}
         gl={{
           antialias: quality === 'high',
           alpha: true,
