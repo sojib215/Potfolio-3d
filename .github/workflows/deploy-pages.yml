@@ -1,8 +1,11 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # Manual for now — Pages is not enabled on the repo yet.
+  # Once you turn it on (Settings → Pages → Source: GitHub Actions),
+  # uncomment the lines below to deploy on every push to main.
+  # push:
+  #   branches: [main]
   workflow_dispatch:
 
 permissions:
