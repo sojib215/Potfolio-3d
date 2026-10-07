@@ -101,6 +101,28 @@ npm run smoke -- http://127.0.0.1:8098/
 
 ## Deployment
 
-SPA rewrites are already configured for Vercel (`vercel.json`), Netlify and Cloudflare
-Pages (`public/_redirects`). For GitHub Pages, add a `404.html` copy of `index.html` if
-you keep client-side routing.
+All three hosts are pre-configured — pick one and the site is live in about a minute.
+
+**Vercel** (easiest, recommended)
+
+```bash
+npx vercel          # preview URL
+npx vercel --prod   # production
+```
+
+`vercel.json` already contains the SPA rewrite and immutable asset caching.
+
+**Netlify / Cloudflare Pages**
+
+`public/_redirects` handles the SPA rewrite. Connect the repo and deploy with
+`npm run build` → `dist`.
+
+**GitHub Pages**
+
+1. Push this branch to `main`.
+2. Repo **Settings → Pages → Source: GitHub Actions**.
+3. `.github/workflows/deploy-pages.yml` builds and deploys on every push. It sets
+   `VITE_BASE=/<repo-name>/` and copies `index.html` to `404.html` so deep links like
+   `/projects/spendly` survive a refresh.
+
+For a custom root domain, build with `VITE_BASE=/ npm run build`.
